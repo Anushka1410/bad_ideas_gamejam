@@ -48,7 +48,7 @@ cat=Stuff(screen,LENGTH-((BLOCKSIZE)*6),HEIGHT-(BLOCKSIZE+BLOCKSIZE+25),BLOCKSIZ
 #define player and objects(for now object and plaer both by player class)
 
 # score/lives/game state
-lives = 5
+
 hit_cooldown = 0  # frames before another cat hit can reduce a life
 game_over = False
 
@@ -93,11 +93,11 @@ while gameloop==True:
     #Ye HUD ko draw karta hai 
     # yeh HUD hai jo lives dikhata hai, isko alag function mein daalna chahiye tha but abhi ke liye theek hai
     font = pygame.font.Font(None, 32)
-    lives_text = font.render(f"Lives: {lives}", True, (255, 255, 255))
+    lives_text = font.render(f"Lives: {tom.health}", True, (255, 255, 255))
     screen.blit(lives_text, (10, 10))
 
     if not game_over:
-        tom.update_direction(5) # Update player direction based on movement input
+        tom.movement(PLAYER_SPEED)   # ← moved up here
         tom.move()
         tom.draw()
         cat.draw()
@@ -108,19 +108,19 @@ while gameloop==True:
             hit_cooldown -= 1
 
         if tom.colliderect(cat) and hit_cooldown <= 0:
-            lives -= 1
+            tom.health -= 1
             hit_cooldown = FPS  # ek sec ke liye buffer de dete hai taaki player ko ek hit ke baad thoda time mile recover karne ke liye
 
-            if lives <= 0:
+            if tom.health <= 0:
                 game_over = True
                 dead_sound.play()  # play death sound when game is over
     else:
         # game over screen
-        game_over_text = font.render("Game Over", True, (255, 0, 0))
+        game_over_text = font.render("lil BRO you down bad", True, (255, 0, 0))
         go_rect = game_over_text.get_rect(center=(LENGTH//2, HEIGHT//2 - 20))
         screen.blit(game_over_text, go_rect)
 
-        died_text = font.render("You died", True, (255, 255, 255))
+        died_text = font.render("LoL FAILED", True, (255, 255, 255))
         died_rect = died_text.get_rect(center=(LENGTH//2, HEIGHT//2 + 20))
         screen.blit(died_text, died_rect)
 
@@ -134,7 +134,7 @@ while gameloop==True:
             pygame.quit()
             exit()
     
-    tom.movement(PLAYER_SPEED)
+    #tom.movement(PLAYER_SPEED) someone make me undersatne why a diff move nad movemet is needed its so hard af to debug
     
         
     pygame.draw.rect(screen,(0,250,250),object,0,1,100,-50,90,1110)

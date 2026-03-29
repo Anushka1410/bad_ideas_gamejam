@@ -183,7 +183,7 @@ class Player(pygame.Rect):
             self.jump_frames_L = pygame.transform.flip(self.jump_frames, True, False)
         
         elif self.health==0:
-            self.walk_frames = self.loadspritesheet(os.path.join(BASE_DIR, "caracter", "walk1h.png"), 32,32)
+            self.walk_frames = self.loadspritesheet(os.path.join(BASE_DIR, "caracter", "walk1hh.png"), 32,32)
             self.walk_frames = [pygame.transform.scale(f, (int(32 * sf), int(32 * sf))) for f in self.walk_frames]  # ← scaling added
 
             self.imageR = pygame.image.load(os.path.join(BASE_DIR, "caracter", "tom0h.png"))
@@ -195,7 +195,7 @@ class Player(pygame.Rect):
             self.idle_frame = pygame.transform.scale(self.idle_frame, (int(w * sf), int(h * sf)))  # ← scaling added
 
             self.jump_frames = pygame.image.load(os.path.join(BASE_DIR, "caracter", "tom0h.png")).convert_alpha()
-            self.jump_frames = pygame.transform.scale(self.jump_frames, (int(20 * sf), int(35 * sf)))  # ← scaling added
+            self.jump_frames = pygame.transform.scale(self.jump_frames, (int(w * sf), int(h * sf)))  # ← scaling added
 
             # Flip versions for animation some advance python code must undestand more
             self.walk_frames_L = [pygame.transform.flip(f, True, False) for f in self.walk_frames]

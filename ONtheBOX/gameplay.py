@@ -1,7 +1,7 @@
 from levels import Level1
-from level2 import Level2
-khela=Level1
-khela.play(khela)
+from gg import Level2
 khela=Level2
+khela.play(khela)
+khela=Level1
 khela.play(khela)
 

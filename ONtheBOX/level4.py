@@ -4,7 +4,7 @@ from player import Player
 from backgd import Background
 from stuff import Stuff
 from enemy import Enemy
-from buttons import Button, RunawayButton, SpecialObject
+from buttons4 import Button, RunawayButton, SpecialObject
 import os
 
 BASE_DIR = os.path.dirname(__file__)
